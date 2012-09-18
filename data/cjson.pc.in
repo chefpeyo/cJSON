@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: cjson
+Description: A library for JSON management
+Version: @VERSION@
+Libs: -L${libdir} -lcjson
+@pkgconfig_requires_private@: @requirements_pc_cjson@
