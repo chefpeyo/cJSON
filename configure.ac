@@ -2,7 +2,7 @@
 ##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##
 m4_define([v_rev], m4_esyscmd([(svnversion "." | grep -v exported || echo 0) | tr -d ' MSP\n']))
 
-m4_define([v_maj], [0])
+m4_define([v_maj], [1])
 m4_define([v_min], [0])
 m4_define([v_mic], [0])
 
