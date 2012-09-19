@@ -7,3 +7,4 @@ Name: cjson
 Description: A library for JSON management
 Version: @version_number@
 Libs: -L${libdir} -lcjson
+Cflags: -I${includedir}/
