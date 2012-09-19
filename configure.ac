@@ -34,15 +34,12 @@ AC_SUBST(release_info)
 VMAJ=v_maj
 AC_SUBST(VMAJ)
 
-AM_INIT_AUTOMAKE([1.6 dist-bzip2])
-
-define([AC_LIBTOOL_LANG_CXX_CONFIG], [:])dnl
-define([AC_LIBTOOL_LANG_F77_CONFIG], [:])dnl
+AM_INIT_AUTOMAKE([foreign])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 AC_PROG_LIBTOOL
-AC_CONFIG_MACRO_DIR([m4])
 
 dnl we just have set the version info, then:
-version_number=1.0
+version_number="v_ver"
 revision_number="v_rev"
 AC_SUBST(version_number)
 AC_SUBST(revision_number)
@@ -60,12 +57,11 @@ AC_CONFIG_FILES([
 Makefile
 src/Makefile
 src/lib/Makefile
-])
-
-
-AC_OUTPUT([
 data/cjson.pc
 ])
+
+
+AC_OUTPUT()
 
 echo
 echo

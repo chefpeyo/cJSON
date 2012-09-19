@@ -5,6 +5,5 @@ includedir=@includedir@
 
 Name: cjson
 Description: A library for JSON management
-Version: @VERSION@
+Version: @version_number@
 Libs: -L${libdir} -lcjson
-@pkgconfig_requires_private@: @requirements_pc_cjson@
