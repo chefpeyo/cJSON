@@ -344,7 +344,7 @@ static char *print_array(cJSON *item,int depth,int fmt)
 	{
 		ret=print_value(child,depth+1,fmt);
 		entries[i++]=ret;
-		if (ret) len+=strlen(ret)+2+(fmt?depth+1:0); else fail=1;
+		if (ret) len+=strlen(ret)+3+(fmt?depth*2:0); else fail=1;
 		child=child->next;
 	}
 	
@@ -368,9 +368,9 @@ static char *print_array(cJSON *item,int depth,int fmt)
 	{
 	   if(fmt) {
 	      *ptr++='\n';
-	      for (j=0; j<=depth; j++) *ptr++='\t'; 
+	      for (j=0; j<depth; j++) *ptr++='\t'; 
 	    }
-		strcpy(ptr,entries[i]);ptr+=strlen(entries[i]);
+		strcpy(ptr,entries[i]); ptr+=strlen(entries[i]);
 		if (i!=numentries-1) {
 		   *ptr++=',';
 		   *ptr=0;
