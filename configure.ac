@@ -5,13 +5,15 @@ m4_define([v_min], [0])
 m4_define([v_mic], [0])
 [m4_define([v_rev], m4_esyscmd([git log 2> /dev/null | (grep -m1 git-svn-id || echo 0) | sed -e 's/.*@\([0-9]*\).*/\1/' | tr -d '\n']))]
 ##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##
-m4_define([v_ver], [v_maj.v_min.v_mic])
+m4_ifdef([v_rev], [m4_define([v_ver], [v_maj.v_min.v_mic.v_rev])],
+[m4_define([v_ver], [v_maj.v_min.v_mic])])
 m4_define([lt_rev], m4_eval(v_maj + v_min))
 m4_define([lt_cur], v_mic)
 m4_define([lt_age], v_min)
 ##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##
+
+AC_INIT([cjson], [v_ver], [guillaume.friloux@asp64.com;pierre-olivier.huguet@asp64.com],[cjson])
 AC_PREREQ(2.57)
-AC_INIT([cjson], [v_rev], [guillaume.friloux@asp64.com;pierre-olivier.huguet@asp64.com],[cjson])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADER([config.h])
@@ -34,15 +36,9 @@ AC_SUBST(release_info)
 VMAJ=v_maj
 AC_SUBST(VMAJ)
 
-AM_INIT_AUTOMAKE([foreign])
+AM_INIT_AUTOMAKE([1.6 dist-bzip2])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 AC_PROG_LIBTOOL
-
-dnl we just have set the version info, then:
-version_number="v_ver"
-revision_number="v_rev"
-AC_SUBST(version_number)
-AC_SUBST(revision_number)
 
 GCC_STACK_PROTECT_LIB
 GCC_STACK_PROTECT_CC
